@@ -11,11 +11,10 @@ test.beforeEach(async ({ page }) => {
 
 test('Login with correct credentials', async ({ page }) => {
     const pm = new PageManager(page);
-    const greeting  = page.locator('.header-user-welcome')
+    const greeting = page.locator('.header-user-welcome')
     await pm.signInPage.goToSignInPage();
     await pm.signInPage.signIn(process.env.MYUSERNAME, process.env.MYPASSWORD);
     await expect(greeting).toContainText('Hi,');
-
 
 });
 
@@ -27,3 +26,10 @@ test('Login with incorrect credentials', async ({ page }) => {
     await expect(errorMessage).toHaveText('Your account name or password is incorrect.');
 });
 
+test('Logout from account', async ({ page }) => {
+    const pm = new PageManager(page);
+    await pm.signInPage.goToSignInPage();
+    await pm.signInPage.signIn(process.env.MYUSERNAME, process.env.MYPASSWORD);
+    await pm.homePage.signOut();
+    await pm.signInPage.checkUserUnauthorized();
+});
