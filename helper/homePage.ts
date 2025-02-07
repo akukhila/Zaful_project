@@ -1,4 +1,4 @@
-import { Locator, Page, expect } from '@playwright/test';
+import { Locator, Page } from '@playwright/test';
 
 export class HomePage {
     readonly page: Page;
@@ -16,9 +16,8 @@ export class HomePage {
         await this.page.getByRole('link', { name: 'SIGN OUT' }).click();
     }
 
-    async checkEmptyFavorites() {
+    async goToMyFavorites() {
         await this.favoritesIcon.click();
-        const myFindsBox = this.page.locator('.my-finds')
-        await expect(myFindsBox).toHaveText('You have no favorites yet.')
+
     }
 }

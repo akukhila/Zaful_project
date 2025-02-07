@@ -22,8 +22,10 @@ export class SignInPage {
     }
 
     async signIn(username: string, password: string) {
-        await this.page.locator('#email').fill(username);
-        await this.page.locator('#passwordsign').fill(password);
+        const emailField = this.page.locator('#email');
+        await emailField.fill(username);
+        const passwordField = this.page.locator('#passwordsign');
+        await passwordField.fill(password);
         await this.page.getByRole('button', { name: 'SIGN IN' }).click();
     }
 
