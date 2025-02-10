@@ -27,6 +27,7 @@ test('Add item to My Favourites list', async ({ page }) => {
     await expect(itemBox).toBeVisible();
 });
 
+
 test('Delete item from My Favorite list', async ({ page }) => {
     const pm = new PageManager(page);
     await pm.signInPage.goToSignInPage();
@@ -36,7 +37,7 @@ test('Delete item from My Favorite list', async ({ page }) => {
     await pm.myFavoritePage.checkEmptyFavorites();
 })
 
-test('Got to My Favorites list_ Unauthorized user', async ({ page }) => {
+test('Get to My Favorites list_ Unauthorized user', async ({ page }) => {
     const pm = new PageManager(page);
     const closeCouponButton = page.locator('.newuser-coupon-close')
     await closeCouponButton.click();
@@ -44,3 +45,17 @@ test('Got to My Favorites list_ Unauthorized user', async ({ page }) => {
     await expect(page.locator('h4').first()).toHaveText('Sign In');
 
 })
+
+test('Check "Add to bag" function', async ({ page }) => {
+    const pm = new PageManager(page);
+    await pm.signInPage.goToSignInPage();
+    await pm.signInPage.signIn(process.env.MYUSERNAME, process.env.MYPASSWORD);
+    await pm.catalogPage.setLiketoFirstItem('Menswear');
+    await pm.homePage.goToMyFavorites();
+    await pm.myFavoritePage.addItemToBag();
+    await pm.myFavoritePage.clickViewBag()
+    const bagItem = page.locator('.item1');
+    await expect(bagItem).toBeVisible();
+
+})
+

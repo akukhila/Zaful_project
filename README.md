@@ -43,5 +43,16 @@ Use command `npx playwright test --ui`
 3.You can also run tests directly in VSCode.
 e.g. Testing tab or directly in the files with tests
 
+# Reporting 
+For the reporting I am using allure reporter. 
+To use this locally it is needed to install Allure
+
+allure dependency could be found in **package.json** file
+
+Allure results folder should appear after first test execution. 
+To receive allure report execute command `allure generate ./allure-results -o ./allure-report`.
+As a result it will be created an allure-report folder.
+In this folder you can find **index.html** file that could be opened in the browser.
+
 
 Thank you for viewing my project!

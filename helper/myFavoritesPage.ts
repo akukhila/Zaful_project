@@ -21,4 +21,19 @@ export class MyFavoritesPage {
         const confirmButton = this.page.locator('.js-comfirm')
         await confirmButton.click();
     }
+
+    async addItemToBag() {
+        const addToBagLink = this.page.getByRole('link', { name: 'Add To Bag' })
+        await addToBagLink.click();
+        const frame = this.page.locator('#xubox_iframe1').contentFrame();
+        const addToBagButton = frame.getByRole('button', { name: 'ADD TO BAG' })
+        await addToBagButton.click();
+    }
+
+    async clickViewBag() {
+        const viewBagLink = this.page.getByRole('link', { name: 'View Bag' })
+        await viewBagLink.click();
+        const newPriceGuide = this.page.locator('.close-newprice-guide');
+        await newPriceGuide.click();
+    }
 }
