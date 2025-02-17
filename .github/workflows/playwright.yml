@@ -21,6 +21,7 @@ jobs:
       run: |
           echo "MYUSERNAME=${{ secrets.MYUSERNAME }}" >> $GITHUB_ENV
           echo "MYPASSWORD=${{ secrets.MYPASSWORD }}" >> $GITHUB_ENV
+          echo "::add-mask::${{ secrets.MYPASSWORD }}"  
 
     - name: Debug environment variables
       run: env | grep MY 
