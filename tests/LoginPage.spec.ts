@@ -14,7 +14,7 @@ test('Login with correct credentials', async ({ page }) => {
     const greeting = page.locator('.header-user-welcome')
     await pm.signInPage.goToSignInPage();
     await pm.signInPage.signIn(process.env.MYUSERNAME, process.env.MYPASSWORD);
-    await page.waitForTimeout(3000);
+    await page.frameLocator('iframe[title="reCAPTCHA"]').locator('.recaptcha-checkbox').click();
     await expect(greeting).toContainText('Hi,');
 
 });
