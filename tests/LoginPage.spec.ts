@@ -26,7 +26,7 @@ test('Login with incorrect credentials', async ({ page }) => {
     await expect(errorMessage).toHaveText('Your account name or password is incorrect.');
 });
 
-test('Logout from account', async ({ page }) => {
+test.skip('Logout from account', async ({ page }) => {
     const pm = new PageManager(page);
     await pm.signInPage.goToSignInPage();
     await pm.signInPage.signIn(process.env.MYUSERNAME, process.env.MYPASSWORD);

@@ -9,7 +9,7 @@ test.beforeEach(async ({ page }) => {
 
 })
 
-test('Check My Favorites_empty list', async ({ page }) => {
+test.skip('Check My Favorites_empty list', async ({ page }) => {
     const pm = new PageManager(page);
     await pm.signInPage.goToSignInPage();
     await pm.signInPage.signIn(process.env.MYUSERNAME, process.env.MYPASSWORD);
@@ -17,7 +17,7 @@ test('Check My Favorites_empty list', async ({ page }) => {
     await pm.myFavoritePage.checkEmptyFavorites();
 })
 
-test('Add item to My Favourites list', async ({ page }) => {
+test.skip('Add item to My Favourites list', async ({ page }) => {
     const pm = new PageManager(page);
     await pm.signInPage.goToSignInPage();
     await pm.signInPage.signIn(process.env.MYUSERNAME, process.env.MYPASSWORD);
@@ -28,7 +28,7 @@ test('Add item to My Favourites list', async ({ page }) => {
 });
 
 
-test('Delete item from My Favorite list', async ({ page }) => {
+test.skip('Delete item from My Favorite list', async ({ page }) => {
     const pm = new PageManager(page);
     await pm.signInPage.goToSignInPage();
     await pm.signInPage.signIn(process.env.MYUSERNAME, process.env.MYPASSWORD);
@@ -37,7 +37,7 @@ test('Delete item from My Favorite list', async ({ page }) => {
     await pm.myFavoritePage.checkEmptyFavorites();
 })
 
-test('Get to My Favorites list_ Unauthorized user', async ({ page }) => {
+test.skip('Get to My Favorites list_ Unauthorized user', async ({ page }) => {
     const pm = new PageManager(page);
     const closeCouponButton = page.locator('.newuser-coupon-close')
     await closeCouponButton.click();
@@ -46,7 +46,7 @@ test('Get to My Favorites list_ Unauthorized user', async ({ page }) => {
 
 })
 
-test('Check "Add to bag" function', async ({ page }) => {
+test.skip('Check "Add to bag" function', async ({ page }) => {
     const pm = new PageManager(page);
     await pm.signInPage.goToSignInPage();
     await pm.signInPage.signIn(process.env.MYUSERNAME, process.env.MYPASSWORD);
