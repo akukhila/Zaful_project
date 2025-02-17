@@ -23,6 +23,7 @@ test('Login with incorrect credentials', async ({ page }) => {
     const errorMessage = page.locator('.msg_error').first()
     await pm.signInPage.goToSignInPage();
     await pm.signInPage.signIn('testaccount@gmail.com', 'testTest7777');
+    await page.waitForTimeout(3000);
     await expect(errorMessage).toHaveText('Your account name or password is incorrect.');
 });
 
