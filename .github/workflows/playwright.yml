@@ -14,15 +14,19 @@ jobs:
       with:
         node-version: lts/*
     - name: Install dependencies
-      run: npm ci --force
+      run: npm ci 
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps --force
     - name: Set up environment variables
       run: |
           echo "MYUSERNAME=${{ secrets.MYUSERNAME }}" >> $GITHUB_ENV
           echo "MYPASSWORD=${{ secrets.MYPASSWORD }}" >> $GITHUB_ENV
+
+    - name: Debug environment variables
+      run: env | grep MY 
+
     - name: Run Playwright tests
-      run: npx playwright test
+      run: npx playwright test --trace on --debug
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:
