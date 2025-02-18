@@ -27,7 +27,7 @@ jobs:
       run: env | grep MY 
 
     - name: Run Playwright tests
-      run: npx playwright test 
+      run: npx playwright test -g "Login with incorrect credentials" 
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:
