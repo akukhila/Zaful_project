@@ -3,6 +3,7 @@ import { SignInPage } from "./signInPage";
 import { HomePage } from "./homePage";
 import { CatalogPage } from "./catalogPage";
 import { MyFavoritesPage } from "./myFavoritesPage";
+import { SupportCenterPage } from "./supportCenterPage";
 
 export class PageManager {
     readonly page: Page;
@@ -10,6 +11,7 @@ export class PageManager {
     readonly homePage: HomePage
     readonly catalogPage: CatalogPage
     readonly myFavoritePage: MyFavoritesPage
+    readonly supportCenterPage: SupportCenterPage
 
 
     constructor(page: Page) {
@@ -19,5 +21,6 @@ export class PageManager {
         this.homePage = new HomePage(this.page);
         this.catalogPage = new CatalogPage(this.page);
         this.myFavoritePage = new MyFavoritesPage(this.page)
+        this.supportCenterPage = new SupportCenterPage(this.page)
     }
 }

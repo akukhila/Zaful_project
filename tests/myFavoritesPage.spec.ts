@@ -1,6 +1,9 @@
 import { test, expect } from '@playwright/test';
 import { PageManager } from '../helper/pageManager';
 
+const username = process.env.MYUSERNAME;
+const password = process.env.MYPASSWORD;
+
 
 
 test.beforeEach(async ({ page }) => {
@@ -12,7 +15,7 @@ test.beforeEach(async ({ page }) => {
 test('Check My Favorites_empty list', async ({ page }) => {
     const pm = new PageManager(page);
     await pm.signInPage.goToSignInPage();
-    await pm.signInPage.signIn(process.env.MYUSERNAME, process.env.MYPASSWORD);
+    await pm.signInPage.signIn(username, password);
     await pm.homePage.goToMyFavorites()
     await pm.myFavoritePage.checkEmptyFavorites();
 })
@@ -20,7 +23,7 @@ test('Check My Favorites_empty list', async ({ page }) => {
 test('Add item to My Favourites list', async ({ page }) => {
     const pm = new PageManager(page);
     await pm.signInPage.goToSignInPage();
-    await pm.signInPage.signIn(process.env.MYUSERNAME, process.env.MYPASSWORD);
+    await pm.signInPage.signIn(username, password);
     await pm.catalogPage.setLiketoFirstItem('Menswear');
     await pm.homePage.goToMyFavorites();
     const itemBox = page.locator('.hurry-buy-goods');
@@ -31,7 +34,7 @@ test('Add item to My Favourites list', async ({ page }) => {
 test('Delete item from My Favorite list', async ({ page }) => {
     const pm = new PageManager(page);
     await pm.signInPage.goToSignInPage();
-    await pm.signInPage.signIn(process.env.MYUSERNAME, process.env.MYPASSWORD);
+    await pm.signInPage.signIn(username, password);
     await pm.homePage.goToMyFavorites();
     await pm.myFavoritePage.deleteItemFromFavorites();
     await pm.myFavoritePage.checkEmptyFavorites();
@@ -49,7 +52,7 @@ test('Get to My Favorites list_ Unauthorized user', async ({ page }) => {
 test('Check "Add to bag" function', async ({ page }) => {
     const pm = new PageManager(page);
     await pm.signInPage.goToSignInPage();
-    await pm.signInPage.signIn(process.env.MYUSERNAME, process.env.MYPASSWORD);
+    await pm.signInPage.signIn(username, password);
     await pm.catalogPage.setLiketoFirstItem('Menswear');
     await pm.homePage.goToMyFavorites();
     await pm.myFavoritePage.addItemToBag();
