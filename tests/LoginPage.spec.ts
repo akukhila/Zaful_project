@@ -1,5 +1,5 @@
-import { test, expect } from '@playwright/test';
-import { PageManager } from '../helper/pageManager';
+import { expect } from '@playwright/test';
+import { test } from '../fixtures'
 
 
 const username = process.env.MYUSERNAME;
@@ -12,28 +12,25 @@ test.beforeEach(async ({ page }) => {
 })
 
 
-test('Login with correct credentials', async ({ page }) => {
-    const pm = new PageManager(page);
+test('Login with correct credentials', async ({ pageManager, page }) => {
     const greeting = page.locator('.header-user-welcome')
-    await pm.signInPage.goToSignInPage();
-    await pm.signInPage.signIn(username, password);
+    await pageManager.signInPage.goToSignInPage();
+    await pageManager.signInPage.signIn(username, password);
     await expect(greeting).toContainText('Hi,');
 
 });
 
-test('Login with incorrect credentials', async ({ page }) => {
-    const pm = new PageManager(page);
+test('Login with incorrect credentials', async ({ page, pageManager }) => {
     const errorMessage = page.locator('.msg_error').first()
-    await pm.signInPage.goToSignInPage();
-    await pm.signInPage.signIn('testaccount@gmail.com', 'testTest7777');
+    await pageManager.signInPage.goToSignInPage();
+    await pageManager.signInPage.signIn('testaccount@gmail.com', 'testTest7777');
     await expect(errorMessage).toHaveText('Your account name or password is incorrect.');
 });
 
-test('Logout from account', async ({ page }) => {
-    const pm = new PageManager(page);
-    await pm.signInPage.goToSignInPage();
-    await pm.signInPage.signIn(username, password);
-    await pm.homePage.signOut();
-    await pm.signInPage.checkUserUnauthorized();
+test('Logout from account', async ({ pageManager }) => {
+    await pageManager.signInPage.goToSignInPage();
+    await pageManager.signInPage.signIn(username, password);
+    await pageManager.homePage.signOut();
+    await pageManager.signInPage.checkUserUnauthorized();
 });
 

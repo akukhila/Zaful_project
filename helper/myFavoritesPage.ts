@@ -27,13 +27,12 @@ export class MyFavoritesPage {
         await addToBagLink.click();
         const frame = this.page.locator('#xubox_iframe1').contentFrame();
         const addToBagButton = frame.getByRole('button', { name: 'ADD TO BAG' })
+        await addToBagButton.waitFor({state:'visible'});
         await addToBagButton.click();
     }
 
     async clickViewBag() {
         const viewBagLink = this.page.getByRole('link', { name: 'View Bag' })
         await viewBagLink.click();
-        const newPriceGuide = this.page.locator('.close-newprice-guide');
-        await newPriceGuide.click();
     }
 }

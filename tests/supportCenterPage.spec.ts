@@ -1,5 +1,4 @@
-import { test, expect } from '@playwright/test';
-import { PageManager } from '../helper/pageManager';
+import { test } from '../fixtures'
 
 const username = process.env.MYUSERNAME;
 const password = process.env.MYPASSWORD;
@@ -9,12 +8,11 @@ test.beforeEach(async ({ page }) => {
 
 })
 
-test('Check Support Center page', async ({ page }) => {
-    const pm = new PageManager(page);
-    await pm.signInPage.goToSignInPage();
-    await pm.signInPage.signIn(username, password);
-    await pm.homePage.goToSupportCenter();
-    await pm.supportCenterPage.checkGenerallPageContent();
+test('Check Support Center page', async ({ pageManager }) => {
+    await pageManager.signInPage.goToSignInPage();
+    await pageManager.signInPage.signIn(username, password);
+    await pageManager.homePage.goToSupportCenter();
+    await pageManager.supportCenterPage.checkGenerallPageContent();
 
 })
 
