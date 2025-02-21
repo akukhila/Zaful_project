@@ -8,8 +8,6 @@ const password = process.env.MYPASSWORD;
 
 test.beforeEach(async ({ page }) => {
     await page.goto('/');
-
-
 })
 
 test('Check My Favorites_empty list', async ({ pageManager }) => {

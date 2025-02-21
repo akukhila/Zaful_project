@@ -4,7 +4,6 @@ export class MyFavoritesPage {
     readonly page: Page;
 
 
-
     constructor(page: Page) {
         this.page
         this.page = page;

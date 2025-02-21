@@ -8,7 +8,6 @@ const password = process.env.MYPASSWORD;
 
 test.beforeEach(async ({ page }) => {
     await page.goto('/');
-
 })
 
 
